@@ -1,3 +1,11 @@
-function substituteOnClick(text) {
-    $('#thonlick').replaceWith('<h5 id="thonclick" style="color: green">Tag was substituted on '+ text +'</h5>')
+function substituteOnClick() {
+
+        if ($("#users").css( "display") == "block" ) {
+            $("#users").css( "display", "none" );
+            $("#thonlick").html('SHOW USERS');
+        }
+        else{
+            $("#users").css( "display", "block" );
+            $("#thonlick").html('HIDE USERS');
+        }
 }

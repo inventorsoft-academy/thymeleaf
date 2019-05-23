@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <script th:src="@{/js/app/index.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
+<body>
+<div style="height: 30px">
+    <nav class="navbar navbar-light bg-light"></nav>
+</div>
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h2>Hi, <span th:text="${user.getFullName()}"></span></h2>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-info" id="thonlick" th:onclick="'substituteOnClick()'">SHOW USERS</button>
+
+    </div>
+</div>
+
+<div class="row" >
+    <div class="col-md-1"></div>
+    <div class="col-md-5" id="users" style="display: none">
+        <th><h4>USER'S LOGIN:</h4></th>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.firstName}"></td>
+            <br>
+        </tr>
+    </div>
+</div>
+</body>
+</html>
