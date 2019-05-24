@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:tcourse="http://www.thymeleaf.org/extras/tcourse">
+<head>
+    <meta charset="UTF-8">
+    <title>Greeting page</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/fontawesome/fontawesome-all.min.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="container">
+    <h2>Greeting</h2>
+    <div layout:fragment="replace_frgment">
+        <p th:text="Hello + ' ' + ${person.username} + ' ' + ${person.lastName}">Nothing</p>
+    </div>
+</div>
+</body>
+</html>
