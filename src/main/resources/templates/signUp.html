@@ -1,28 +1,59 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="title" content="Create User">
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/fontawesome/fontawesome-all.min.css}" rel="stylesheet">
-    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
-    <title>Create User</title>
+    <title>Title</title>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 sign-up--form order-first order-lg-last">
-                    <div class="row">
-                          <!--Form should be here-->
-                    </div>
-                </div>
-            </div>
+    <form style="    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid;
+    padding: 20px;
+    border-radius: 10px;" th:object="${user}" method="post" th:action="@{/signUp}">
+
+        <div th:if="${#fields.hasErrors()}">
+
+        <span style="color: red;" class="validationError">
+        Please correct the problems below and resubmit.
+        </span>
         </div>
-    </div>
-</div>
+        <h2>Sign up form</h2>
+        <label>First name</label>
+        <input name="firstName" type="text" th:field="*{firstName}">
+        <span style="color: red;" class="validationError"
+              th:if="${#fields.hasErrors('firstName')}"
+              th:errors="*{firstName}">First name error</span>
+        <br/>
+        <label>Last name</label>
+        <input name="lastName" type="text" th:field="*{lastName}">
+        <span style="color: red;" class="validationError"
+              th:if="${#fields.hasErrors('lastName')}"
+              th:errors="*{lastName}">Last name error</span>
+        <br/>
+        <label>Email</label>
+        <input name="email" type="email"th:field="*{email}">
+        <span style="color: red;" class="validationError"
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}">Email error</span>
+        <br/>
+        <label>Password</label>
+        <input name="password"type="password" th:field="*{password}">
+        <span style="color: red;" class="validationError"
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}">Password error</span>
+        <br/>
+        <label>Confirm password</label>
+        <input name="confirm password" type="password">
+        <br/>
+        <input style="width: 50%;
+    margin: 0 auto;" type="submit"/>
+    </form>
+
+
 
 </body>
 </html>
