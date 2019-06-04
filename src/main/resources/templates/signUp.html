@@ -16,7 +16,52 @@
             <div class="row">
                 <div class="col-sm-4 sign-up--form order-first order-lg-last">
                     <div class="row">
-                          <!--Form should be here-->
+                        <form class="col mx-auto" accept-charset="UTF-8" th:action="@{/users/signup}" method="post"
+                              th:object="${userSignUpRequest}">
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input id="first-name" class="form-control form-control-lg" type="text" th:field="*{firstName}" required>
+                                <th:block th:if="${#fields.hasErrors('firstName')}">
+                                    <div th:errorclass="invalid-input" th:errors="*{firstName}"></div>
+                                </th:block>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input id="last-name" class="form-control form-control-lg" type="text" th:field="*{lastName}" required>
+                                <th:block th:if="${#fields.hasErrors('lastName')}">
+                                    <div th:errorclass="invalid-input" th:errors="*{lastName}"></div>
+                                </th:block>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-name">User Name</label>
+                                <input id="user-name" class="form-control form-control-lg" type="text" th:field="*{username}" required>
+                                <th:block th:if="${#fields.hasErrors('username')}">
+                                    <div th:errorclass="invalid-input" th:errors="*{username}"></div>
+                                </th:block>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" class="form-control form-control-lg" type="text" th:field="*{email}" required>
+                                <th:block th:if="${#fields.hasErrors('email')}">
+                                    <div th:errorclass="invalid-input" th:errors="*{email}"></div>
+                                </th:block>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input id="password" class="form-control form-control-lg" type="password" name="password" minlength="5"
+                                       maxlength="35" th:field="*{password}" required>
+                                <th:block th:if="${#fields.hasErrors('password')}">
+                                    <div th:errorclass="invalid-input" th:errors="*{password}"></div>
+                                </th:block>
+                            </div>
+                            <div class="form-group">
+                                <label for="password_again">Confirm Password</label>
+                                <input id="password_again" class="form-control form-control-lg" type="password" name="confirmPassword"
+                                       minlength="5" maxlength="35" required>
+
+                            </div>
+                            <button type="submit" class="btn btn-success primary-lg">Create account</button>
+                        </form>
                     </div>
                 </div>
             </div>
