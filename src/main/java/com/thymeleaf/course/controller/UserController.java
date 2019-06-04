@@ -1,7 +1,6 @@
 package com.thymeleaf.course.controller;
 
 import com.thymeleaf.course.domain.model.dto.UserSignUpRequest;
-import com.thymeleaf.course.domain.model.entity.User;
 import com.thymeleaf.course.domain.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/users")
