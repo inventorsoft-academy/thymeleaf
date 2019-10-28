@@ -1,22 +1,36 @@
 package com.thymeleaf.course.security;
 
+import com.thymeleaf.course.domain.service.CustomUserDetailsService;
 import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
+
     static final String LOGIN_PAGE = "/login";
+
+    CustomUserDetailsService customUserDetailsService;
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/api/signup").permitAll()
                 .antMatchers("/api/**").authenticated()
 
                 .and()
@@ -33,11 +47,11 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("thymeleaf@test.com")
-                .password("{noop}thymeleaf")
-                .roles("USER");
-    }
+        public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+            authenticationManagerBuilder
+                    .userDetailsService(customUserDetailsService)
+                    .passwordEncoder(passwordEncoder());
+        }
+
 }
+

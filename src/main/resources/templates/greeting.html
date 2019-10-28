@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Greeting page</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link th:href="@{/css/fontawesome/fontawesome-all.min.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center">Greeting!</h2>
+            <h4 class="text-success" th:text="Hello + ' ' + ${user.firstName} + ' ' + ${user.lastName} + '!'"></h4>
+        </div>
+    </div>
+</div>
+</body>
+</html>
