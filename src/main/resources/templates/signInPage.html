@@ -16,10 +16,10 @@
         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
         <label for="password">Password</label>
         <input type="text" th:field="*{password}" id="password" placeholder="Enter password">
-        <label for="confirm_password">Confirm password</label>
-        <input type="text" id="confirm_password" placeholder="Repeat password">
-        <input type="submit" value="Sign up">
+        <input type="submit" value="Sign in">
     </form>
+    <p style="color: #ffffff">If You have no account <a href="http://localhost:8081/lelek_task/sign_up"
+    style="color: #3AE2CE">Sign Up</a></p>
 </div>
 </body>
 </html>
