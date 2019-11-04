@@ -1,20 +1,22 @@
 package com.thymeleaf.course.mapper;
 
+import com.thymeleaf.course.domain.model.dto.UserDto;
 import com.thymeleaf.course.domain.model.dto.UserSignUpRequest;
 import com.thymeleaf.course.domain.model.entity.User;
-import org.springframework.stereotype.Component;
+import org.modelmapper.ModelMapper;
 
-@Component
 public class UserMapper {
 
-    public static User mapUserRequest2User(UserSignUpRequest request) {
-        User user = new User();
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
-        user.setRole("USER");
+    private UserMapper() {
+    }
 
-        return user;
+    private static ModelMapper modelMapper = new ModelMapper();
+
+    public static User mapUserRequest2User(UserSignUpRequest request) {
+        return modelMapper.map(request, User.class);
+    }
+
+    public static UserDto mapUser2UserDto(User user) {
+        return modelMapper.map(user, UserDto.class);
     }
 }
