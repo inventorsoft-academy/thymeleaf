@@ -2,6 +2,7 @@ package com.thymeleaf.course.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "Users")
 @Data
 @NoArgsConstructor
+@Component
 public class User {
 
     @Id

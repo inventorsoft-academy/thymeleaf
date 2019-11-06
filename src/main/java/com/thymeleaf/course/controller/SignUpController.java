@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Slf4j
 @Controller
@@ -15,28 +16,33 @@ import org.springframework.web.servlet.ModelAndView;
 public class SignUpController {
 
     private static final String SIGN_UP_PAGE = "signUpPage";
+    private static final String USER_PAGE = "userPage";
+    private static final String USER_EXIST = "User with this email already exist!";
 
     @Autowired
     private SignInUpService signInUpService;
 
+    @Autowired
+    private User user;
+
     @GetMapping("/sign_up")
     public String getSignUpPage(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", user);
         return SIGN_UP_PAGE;
     }
 
     @PostMapping(value = "/sign_up")
-    public void signUp(@RequestParam String email, String password) {
-        User user = new User();
+    public String signUp(Model model, @RequestParam String email, String password) {
         user.setEmail(email);
         user.setPassword(password);
-        log.info("User = " + user);
-        signInUpService.saveUser(user);
-    }
-
-    @PostMapping("/sign_in")
-    public void signIn(@RequestBody User user) {
-        signInUpService.signIn(user);
+        if (signInUpService.saveUser(user)) {
+            return "redirect:/lelek_task/user";
+        } else {
+            model.addAttribute("user", user);
+            model.addAttribute("user_exist", USER_EXIST);
+            log.info("User = " + user);
+            return SIGN_UP_PAGE;
+        }
     }
 
 }

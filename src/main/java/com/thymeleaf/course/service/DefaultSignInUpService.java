@@ -14,8 +14,13 @@ public class DefaultSignInUpService implements SignInUpService {
     private SignInUpAbstractDao signInUpAbstractDao;
 
     @Override
-    public User saveUser(User user) {
-        return signInUpAbstractDao.save(user);
+    public boolean saveUser(User user) {
+        if (signInUpAbstractDao.findByEmail(user.getEmail()).isPresent()) {
+            return false;
+        } else {
+            signInUpAbstractDao.save(user);
+            return true;
+        }
     }
 
     @Override

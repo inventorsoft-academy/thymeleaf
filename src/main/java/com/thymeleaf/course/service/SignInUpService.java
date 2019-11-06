@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface SignInUpService {
 
-    User saveUser(User user);
+    boolean saveUser(User user);
 
     Optional<User> findByEmail(final String email);
 
