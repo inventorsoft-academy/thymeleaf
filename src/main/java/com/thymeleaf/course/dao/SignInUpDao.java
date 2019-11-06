@@ -9,5 +9,4 @@ import java.util.Optional;
 @Repository
 public interface SignInUpDao extends CrudRepository<User, Long> {
     Optional<User> findByEmail(String email);
-
 }

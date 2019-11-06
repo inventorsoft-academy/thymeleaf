@@ -2,15 +2,15 @@ package com.thymeleaf.course.service;
 
 import com.thymeleaf.course.dao.SignInUpAbstractDao;
 import com.thymeleaf.course.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class DefaultSignInUpService implements SignInUpService {
 
-    @Autowired
     private SignInUpAbstractDao signInUpAbstractDao;
 
     @Override

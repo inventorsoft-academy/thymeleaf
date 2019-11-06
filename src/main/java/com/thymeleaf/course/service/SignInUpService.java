@@ -1,6 +1,5 @@
 package com.thymeleaf.course.service;
 
-
 import com.thymeleaf.course.model.User;
 
 import java.util.Optional;
