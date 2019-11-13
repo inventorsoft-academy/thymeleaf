@@ -1,15 +1,17 @@
 package com.thymeleaf.course.controller;
 
-import com.thymeleaf.course.domain.service.UserService;
-import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
+@Slf4j
 @Controller
-@RequestMapping(value = "/users")
-@AllArgsConstructor
 public class UserController {
 
-    final UserService userService;
+    private static final String USER_PAGE = "userPage";
 
+    @GetMapping("/user")
+    public String getSignUpPage() {
+        return USER_PAGE;
+    }
 }

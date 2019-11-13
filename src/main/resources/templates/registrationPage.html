@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Thymeleaf app</title>
+    <link th:href="@{/css/application.css}" rel="stylesheet">
+</head>
+
+<body>
+<div class="input_box">
+    <form id="registration" th:action="@{/register}" method="post" th:object="${user}">
+        <label for="email">Email</label>
+        <input type="text" th:value="${user.email}" name="email" id="email" placeholder="Enter email">
+        <p style="color: red" class="message" th:text="${user_exist}"></p><br>
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password" placeholder="Enter password">
+        <input type="submit" value="Sign up">
+    </form>
+</div>
+</body>
+</html>
