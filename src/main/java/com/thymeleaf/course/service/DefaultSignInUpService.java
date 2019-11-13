@@ -1,9 +1,10 @@
 package com.thymeleaf.course.service;
 
-import com.thymeleaf.course.dao.SignInUpAbstractDao;
+import com.thymeleaf.course.dao.SignInUpDao;
 import com.thymeleaf.course.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -11,40 +12,53 @@ import java.util.Optional;
 @Service
 public class DefaultSignInUpService implements SignInUpService {
 
-    private SignInUpAbstractDao signInUpAbstractDao;
+    private SignInUpDao signInUpDao;
 
     @Override
     public boolean saveUser(User user) {
-        if (signInUpAbstractDao.findByEmail(user.getEmail()).isPresent()) {
+        if (signInUpDao.findByEmail(user.getEmail()).isPresent()) {
             return false;
         } else {
-            signInUpAbstractDao.save(user);
+            signInUpDao.save(user);
             return true;
         }
     }
 
+    @Transactional
     @Override
     public Optional<User> findByEmail(String email) {
-        return signInUpAbstractDao.findByEmail(email);
+        return signInUpDao.findByEmail(email);
     }
 
+    @Transactional
     @Override
     public Optional<User> findById(Long id) {
-        return signInUpAbstractDao.findById(id);
+        return signInUpDao.findById(id);
     }
 
+    @Transactional
     @Override
     public boolean signIn(User user) {
-        return signInUpAbstractDao.findByEmail(user.getEmail()).get().equals(user);
+        return signInUpDao.findByEmail(user.getEmail()).get().equals(user);
     }
 
+    @Transactional
     @Override
     public boolean update(Long id, User user) {
-        return signInUpAbstractDao.update(id, user);
+        if (signInUpDao.findById(id).isPresent()) {
+            User daoUser = signInUpDao.findById(id).get();
+            daoUser.setEmail(user.getEmail());
+            daoUser.setPassword(user.getPassword());
+            signInUpDao.save(daoUser);
+            return true;
+        } else {
+            return false;
+        }
     }
 
+    @Transactional
     @Override
     public void remove(Long id) {
-        signInUpAbstractDao.remove(id);
+        signInUpDao.deleteById(id);
     }
 }

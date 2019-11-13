@@ -10,14 +10,12 @@
 
 <body>
 <div class="input_box">
-    <form id="registration" th:action="@{/lelek_task/sign_up}" method="post" th:object="${user}">
+    <form id="registration" th:action="@{/register}" method="post" th:object="${user}">
         <label for="email">Email</label>
         <input type="text" th:value="${user.email}" name="email" id="email" placeholder="Enter email">
         <p style="color: red" class="message" th:text="${user_exist}"></p><br>
         <label for="password">Password</label>
         <input type="text" name="password" id="password" placeholder="Enter password">
-        <label for="confirm_password">Confirm password</label>
-        <input type="text" name="confirm_password" id="confirm_password" placeholder="Repeat password">
         <input type="submit" value="Sign up">
     </form>
 </div>

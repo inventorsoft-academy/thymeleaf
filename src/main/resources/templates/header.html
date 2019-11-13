@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Thymeleaf app</title>
+    <link th:href="@{/css/application.css}" rel="stylesheet">
+</head>
+
+<body>
+<div class="header" th:fragment="header">
+    <div class="buttons" align="left">
+        <a th:href="@{/login}"><button class="header_button">Sign In</button></a>
+        <a th:href="@{/register}"><button class="header_button">Sign Up</button></a>
+        <a th:href="@{/logout}"><button class="header_button">Log out</button></a>
+    </div>
+</div>
+</body>
+</html>

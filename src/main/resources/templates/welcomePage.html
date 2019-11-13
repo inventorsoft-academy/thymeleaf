@@ -6,14 +6,14 @@
     <meta charset="utf-8"/>
     <title>Thymeleaf app</title>
     <link th:href="@{/css/application.css}" rel="stylesheet">
-    <script th:src="@{/js/application.js}"></script>
 </head>
 
 <body>
+<div th:insert="~{header}"></div>
 <div class="input_box">
     <H1 style="color: #ffffff">Welcome to Thymeleaf App</H1>
-    <button class="my_button" onclick="signInPage()">Sign In</button>
-    <button class="my_button" onclick="signUpPage()">Sign Up</button>
+    <a th:href="@{/user}"><button class="my_button">User page</button></a>
+    <a th:href="@{/admin}"><button class="my_button">Admin page</button></a>
 </div>
 </body>
 </html>

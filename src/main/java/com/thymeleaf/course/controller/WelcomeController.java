@@ -15,4 +15,9 @@ public class WelcomeController {
         return WELCOME_PAGE;
     }
 
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "403Page";
+    }
+
 }
