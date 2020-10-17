@@ -16,7 +16,22 @@
             <div class="row">
                 <div class="col-sm-4 sign-up--form order-first order-lg-last">
                     <div class="row">
-                          <!--Form should be here-->
+                        <div th:if="${#fields.hasGlobalErrors()}">
+                            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">Error message</p>
+                        </div>
+                        <form th:action="@{/users/signUp}" th:object="${userSignUpRequest}" method="post">
+                            <label for="first-name">First Name</label>
+                            <input id="first-name" type="text" th:field="*{firstName}" required>
+                            <label for="last-name">Last Name</label>
+                            <input id="last-name" type="text" th:field="*{lastName}" required>
+                            <label for="email">Email</label>
+                            <input id="email" type="text" th:field="*{email}" required>
+                            <label for="password">Password</label>
+                            <input id="password" type="password" name="password" th:field="*{password}" required>
+                            <label for="password_again">Confirm Password</label>
+                            <input id="password_again" type="password" name="confirmPassword" required>
+                            <button type="submit">Create User</button>
+                          </form>
                     </div>
                 </div>
             </div>
