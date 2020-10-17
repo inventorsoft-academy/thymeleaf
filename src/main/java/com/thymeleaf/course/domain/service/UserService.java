@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -20,4 +21,12 @@ public class UserService {
         User user = UserMapper.mapUserRequest2User(request);
         userRepository.save(user);
     }
+
+    @Transactional
+    public List<User> findAll() {
+        List<User> result = (List<User>) userRepository.findAll();
+        return result;
+    }
+
+
 }
