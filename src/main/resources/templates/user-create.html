@@ -35,7 +35,7 @@
     }
 </style>
 <body>
-<form action="#" th:action="@{/users/create}" th:object="${UserSignUpRequest}" onsubmit="return checkForm(this);">
+<form th:method="POST" th:action="@{/users/create}" th:object="${user}" onsubmit="return checkForm(this);">
     <label for="firstName">First name</label>
     <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
     <label for="lastName">Last name</label>

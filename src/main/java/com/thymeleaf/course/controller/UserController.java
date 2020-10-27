@@ -21,15 +21,15 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping()
-    public String createUserForm(Model model) {
-        List<User> users = userService.getUserArrayList();
-        model.addAttribute("users", users);
+    @GetMapping("/show")
+    public String showAllUsers(Model model) {
+        model.addAttribute("users", userService.getUserArrayList());
         return "show-users";
     }
 
     @GetMapping("/create")
-    public String createUserForm(UserSignUpRequest user) {
+    public String createUserForm(Model model) {
+        model.addAttribute("user", new UserSignUpRequest());
         return "user-create";
     }
 
