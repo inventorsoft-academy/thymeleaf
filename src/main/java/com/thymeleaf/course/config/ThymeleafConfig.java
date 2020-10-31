@@ -16,7 +16,7 @@ public class ThymeleafConfig {
     
     private ApplicationContext applicationContext;
 
-   /* @Bean
+   @Bean
     public ViewResolver viewResolver() {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
@@ -52,5 +52,5 @@ public class ThymeleafConfig {
         // for safer backwards compatibility.
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
-    }*/
+    }
 }
