@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Users</title>
+</head>
+<body>
+<div th:each="user : ${users}">
+    Hello <b th:text="${user.firstName}">FirstName</b>  <b th:text="${user.lastName}">LastName</b> !!!
+</div>
+</body>
+</html>
